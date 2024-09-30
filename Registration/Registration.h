@@ -6,8 +6,12 @@
 #define REGIST_H
 #include "Result.h"     //#include your own files first
 #include <iostream>
+#include <string>
 
-using namespace std;
+using std::ostream;
+using std::istream;
+using std::string;
+
 
 const unsigned MAX_RESULT = 10;
 

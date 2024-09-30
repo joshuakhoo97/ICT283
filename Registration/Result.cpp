@@ -43,13 +43,13 @@ std::ostream & operator << (ostream & os, const Result & result)
 std::istream & operator >> (istream & input, Result & result)
 {
     Unit unit;
-    int mark;
+    input >> unit;
+    result.SetUnit(unit);
 
-    input >> unit >> mark;  // Assuming Unit class supports >> operator for input
 
-    // Set Methods to populate Result object
-    result.SetUnit(unit);   // Use setter to update the unit
-    result.SetMark(mark);   // Use setter to update the mark
+    string tempStr;
+    std::getline(input, tempStr);
+    result.SetMark(stoi (tempStr));
 
     return input;
 }

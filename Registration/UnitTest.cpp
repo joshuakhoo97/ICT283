@@ -15,6 +15,9 @@ int main()
     cout << "-- Test 2: Parameterised Constructor --" << endl;
     cout << secondUnit << endl;
 
+    cout << "-- Test 3: Set Name to pass Exam --" << endl;
+    myUnit.SetUnitName("Pass Exam");
+    cout << myUnit << endl;
 
 
     return 0;

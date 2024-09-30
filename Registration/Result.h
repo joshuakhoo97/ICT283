@@ -3,7 +3,8 @@
 #include <iostream>
 #include "Unit.h"
 
-using namespace std;
+using std::ostream;
+using std::istream;
 
 class Result
 {

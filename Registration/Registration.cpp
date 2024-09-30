@@ -5,19 +5,13 @@ Constructor
 */
 
 Registration::Registration()
-    : m_studentId(0), m_semester(0), m_count(0)
 {
-
+    m_count = 0;
 }
 
 /*
 Get methods
 */
-
-unsigned    Registration::GetCount() const
-{
-    return m_count;
-}
 
 long        Registration::GetStudentId() const
 {
@@ -29,20 +23,28 @@ unsigned    Registration::GetSemester() const
     return m_semester;
 }
 
+unsigned    Registration::GetCount() const
+{
+    return m_count;
+}
+
 unsigned    Registration::GetCredits() const
 {
     unsigned sum = 0;
-    Unit tempUnit; // because the GetUnit is void so we have to do this
+    // because the GetUnit returns by reference
+    Unit tempUnit;
     for(unsigned i = 0; i < m_count; i++)
     {
-        m_results[i].GetUnit(tempUnit); // return attribute via reference
+        // GetUnit to return attribute via reference
+        m_results[i].GetUnit(tempUnit);
         sum += tempUnit.GetCredits();
     }
 
     return sum;
 }
 
-const       Result& Registration::GetResult (unsigned index) const  // Access an individual result
+// Access an individual result
+const       Result& Registration::GetResult (unsigned index) const
 {
     static Result defaultR;
     if(index < m_count)
@@ -51,13 +53,13 @@ const       Result& Registration::GetResult (unsigned index) const  // Access an
     }
     else
     {
-        cout << "index out of bounds" << endl;
+        std::cout << "index out of bounds" << std::endl;
         return defaultR;
     }
 }
 
-
-const       Result* Registration::GetAllResults () const // Access array of results
+// Access the array of results
+const       Result* Registration::GetAllResults () const
 {
     return m_results;
 }
@@ -65,6 +67,11 @@ const       Result* Registration::GetAllResults () const // Access array of resu
 /*
 Set methods
 */
+
+void Registration::SetStudentId(long studentId)
+{
+    m_studentId = studentId;
+}
 
 void Registration::SetSemester  (unsigned semester)
 {
@@ -79,7 +86,7 @@ void Registration::SetCount     (unsigned newCount)
 void Registration::AddResult    (const Result& result)
 {
     if(m_count >= MAX_RESULT){
-        cout << "Error, Records limit exceed 10 " + MAX_RESULT - m_count  << endl;
+        std::cout << "Error, Records limit exceed 10 " + MAX_RESULT - m_count  << std::endl;
     }
     else{
         m_results[m_count] = result;
@@ -87,35 +94,40 @@ void Registration::AddResult    (const Result& result)
     }
 }
 
-void Registration::SetStudentId(long studentId)
-{
-    m_studentId = studentId;
-}
-
 
 // Over Loaded   << | >> operators
-
-std::istream & operator >>( istream & input, Registration & registration )
+std::istream & operator >>( istream & input, Registration & r )
 {
-    // To store input
-    long studentId;
-    unsigned semester, newCount;
-    Result result;
+    // To store 1st line
+    string tempStr;
+    std::getline(input, tempStr, ',');
+    r.SetStudentId(stoi(tempStr));
 
-    input >> studentId >> semester >> newCount;
+    std::getline(input, tempStr, ',');
+    r.SetSemester(stoi(tempStr));
+
+    std::getline(input, tempStr, ',');
+    unsigned newCount = stoi(tempStr);
+
+
 
     // To do:
     // Use set methods to populate objects
-    registration.SetStudentId(studentId);
-    registration.SetSemester(semester);
+
 
     for(unsigned i = 0; i < newCount; i++) // unsigned means an int that is positive
     {
-        // track down which >> operator is called. Hint: look at what is being input.
-        input >> result;
+        // To do:
+        Result newResult;
 
-        // To do: Create Set Result method
-        registration.AddResult(result);
+
+        input >> newResult;
+        r.AddResult(newResult);
+//        // track down which >> operator is called. Hint: look at what is being input.
+//        input >> result;
+//
+//        // To do: Create Set Result method
+//        registration.AddResult(result);
     }
 
     return input;

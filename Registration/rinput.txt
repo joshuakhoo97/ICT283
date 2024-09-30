@@ -1,5 +1,5 @@
-102234 9 4
-Data_Structures_And_Abstractions ICT283 3 90
-Computer_Graphics ICT289 1 90
-Introduction_to_Computer_Science ICT167 4 88
-Introduction_to_Cyber_Security ICT287 3 90
+102234,9,4
+Data Structures And Abstractions,ICT283,3,90
+Computer Graphics,ICT289,1,90
+Introduction to Computer Science,ICT167,4,88
+Introduction to Cyber Security,ICT287,3,90

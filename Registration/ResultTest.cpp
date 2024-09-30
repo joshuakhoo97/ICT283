@@ -2,6 +2,9 @@
 #include "Result.h"
 #include "Unit.h"
 
+using std::cout;
+using std::endl;
+
 int main ()
 {
 

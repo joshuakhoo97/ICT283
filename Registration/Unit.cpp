@@ -6,19 +6,23 @@ Constructors
 */
 
 Unit::Unit()
-    :  m_credits(0)
 {
     // Arrays (C-style strings) need to be initialized in the constructor body
-    m_name[0]   = '\0'; // it is a char * string, not a C++ string object.
-    m_unitId[0] = '\0';
+    m_name   = " "; // it is a char * string, not a C++ string object.
+    m_unitId = " ";
+    m_credits = 0;
 }
 
-Unit::Unit( const char * name, const char * unitId, unsigned credits )
-    : m_credits(credits)
+Unit::Unit( const string& name, const string& unitId, unsigned credits )
+//m_name = name, m_unitId = unitId, m_credits = 0
 {
-    // Arrays (C-style strings) need to be initialized in the constructor body
-    strncpy(m_name, name, UNIT_NAME_SIZE);  //strncpy needed from string.h
-    strncpy(m_unitId, unitId, UNIT_ID_SIZE);
+//    // Arrays (C-style strings) need to be initialized in the constructor body
+//    strncpy(m_name, name, UNIT_NAME_SIZE);  //strncpy needed from string.h
+//    strncpy(m_unitId, unitId, UNIT_ID_SIZE);
+
+    m_name      = name;
+    m_unitId    = unitId;
+    m_credits   = credits;
 }
 
 
@@ -26,17 +30,17 @@ Unit::Unit( const char * name, const char * unitId, unsigned credits )
 Get Methods
 */
 
-const char*     Unit::GetUnitName()   const
+string     Unit::GetUnitName()   const
 {
     return m_name;
 }
 
-const char*     Unit::GetUnitId()     const
+string     Unit::GetUnitId()     const
 {
     return m_unitId;
 }
 
-unsigned Unit::GetCredits() const
+unsigned    Unit::GetCredits()   const
 {
     return m_credits;
 }
@@ -45,16 +49,14 @@ unsigned Unit::GetCredits() const
 /*
 Set Methods
 */
-void Unit::SetUnitName(const char* newUnitName)
+void Unit::SetUnitName(const string &newUnitName)
 {
-    strncpy(m_name, newUnitName, UNIT_NAME_SIZE - 1);
-    m_name[UNIT_NAME_SIZE - 1 ] = '\0';
+    m_name = newUnitName;
 }
 
-void Unit::SetUnitId  (const char* newUnitId)
+void Unit::SetUnitId  (const string  &newUnitId)
 {
-    strncpy(m_unitId, newUnitId, UNIT_ID_SIZE - 1);
-    m_unitId[UNIT_ID_SIZE - 1] = '\0';
+    m_unitId = newUnitId;
 }
 
 void Unit::SetCredits( unsigned credits )
@@ -68,15 +70,20 @@ Non-Member functions
 */
 std::istream & operator >>( istream & input, Unit & unit)
 {
-    char unitName[UNIT_NAME_SIZE];
-    char unitId  [UNIT_ID_SIZE];
-    int  credits;
+    // Destination to store input temporarily
+    string tempStr;
 
-    input >> unitName >> unitId >> credits;
+    // Unit Name
+    std::getline(input, tempStr, ',');
+    unit.SetUnitName(tempStr);
 
-    unit.SetUnitName(unitName);
-    unit.SetUnitId(unitId);
-    unit.SetCredits(credits);
+    // Unit Id
+    std::getline(input, tempStr , ',');
+    unit.SetUnitId(tempStr);
+
+    // Credits
+    std::getline(input, tempStr, ',');
+    unit.SetCredits(stoi(tempStr));
 
     return input;
 }
