@@ -1,0 +1,25 @@
+Student ID: 102234
+Semester:   9
+Unit Count: 4
+  Unit   : Data_Structures_And_Abstractions
+  Unit Id: ICT283
+  Credits: 3
+  Mark    : 90
+
+  Unit   : Computer_Graphics
+  Unit Id: ICT289
+  Credits: 1
+  Mark    : 90
+
+  Unit   : Introduction_to_Computer_Science
+  Unit Id: ICT167
+  Credits: 4
+  Mark    : 88
+
+  Unit   : Introduction_to_Cyber_Security
+  Unit Id: ICT287
+  Credits: 3
+  Mark    : 90
+
+Number of courses = 4
+Total credits     = 11

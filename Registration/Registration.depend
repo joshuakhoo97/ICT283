@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1727424292 source:d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\registration.cpp
+	"Registration.h"
+
+1727421339 d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\registration.h
+	"Result.h"
+	<iostream>
+
+1727421214 source:d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\result.cpp
+	"RESULT.h"
+
+1727421214 d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\result.h
+	<iostream>
+	"Unit.h"
+
+1727421110 source:d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\unit.cpp
+	"UNIT.h"
+
+1727421110 d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\unit.h
+	<iostream>
+	<cstring>
+
+1727424116 source:d:\school\murdoch\ict 283 _ 2\topic03\practical\new registration-code from lab2\registration\main.cpp
+	"Registration.h"
+	<iostream>
+	<fstream>
+
