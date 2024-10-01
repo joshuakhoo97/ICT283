@@ -7,19 +7,14 @@ Constructors
 
 Unit::Unit()
 {
-    // Arrays (C-style strings) need to be initialized in the constructor body
-    m_name   = " "; // it is a char * string, not a C++ string object.
+    m_name   = " ";
     m_unitId = " ";
     m_credits = 0;
 }
 
 Unit::Unit( const string& name, const string& unitId, unsigned credits )
-//m_name = name, m_unitId = unitId, m_credits = 0
-{
-//    // Arrays (C-style strings) need to be initialized in the constructor body
-//    strncpy(m_name, name, UNIT_NAME_SIZE);  //strncpy needed from string.h
-//    strncpy(m_unitId, unitId, UNIT_ID_SIZE);
 
+{
     m_name      = name;
     m_unitId    = unitId;
     m_credits   = credits;
@@ -83,7 +78,7 @@ std::istream & operator >>( istream & input, Unit & unit)
 
     // Credits
     std::getline(input, tempStr, ',');
-    unit.SetCredits(stoi(tempStr));
+    unit.SetCredits(stoul(tempStr));
 
     return input;
 }

@@ -1,5 +1,5 @@
 102234,9,4
-Data Structures And Abstractions,ICT283,3,90
-Computer Graphics,ICT289,1,90
-Introduction to Computer Science,ICT167,4,88
-Introduction to Cyber Security,ICT287,3,90
+Data Structures And Abstractions,ICT283,3,90,30/06/2023
+Computer Graphics,ICT289,1,90,27/08/2023
+Introduction to Computer Science,ICT167,4,88,26/12/2023
+Introduction to Cyber Security,ICT287,3,90,29/11/2023

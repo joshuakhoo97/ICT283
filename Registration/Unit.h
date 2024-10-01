@@ -2,19 +2,16 @@
 #define UNIT_H
 
 #include <iostream>
-#include <cstring>
 
 using std::string;
 using std::ostream;
 using std::istream;
 
-// Although the usage of unsigned here is fine, usage of unsigned type can be problematic.
-// Can you think of what problems can occur? --> When need to perform arithmetic operations that could
-// potentially lead to negative number
 
-const unsigned UNIT_NAME_SIZE       = 50;
-const unsigned UNIT_ID_SIZE         = 10;
-
+/**
+ * \class Unit
+ * \brief Represents a course unit, storing unit name, ID, and credit information.
+ */
 class Unit
 {
 public:

@@ -6,7 +6,9 @@ Constructor
 
 Registration::Registration()
 {
-    m_count = 0;
+    m_studentId = 000000;
+    m_semester  = 0;
+    m_count     = 0;
 }
 
 /*
@@ -100,34 +102,24 @@ std::istream & operator >>( istream & input, Registration & r )
 {
     // To store 1st line
     string tempStr;
-    std::getline(input, tempStr, ',');
-    r.SetStudentId(stoi(tempStr));
+    std::getline(input, tempStr, ','); // stores 102234
+    r.SetStudentId(stol(tempStr));
 
-    std::getline(input, tempStr, ',');
-    r.SetSemester(stoi(tempStr));
+    std::getline(input, tempStr, ','); // stores 9
+    r.SetSemester(stoul(tempStr));
 
-    std::getline(input, tempStr, ',');
-    unsigned newCount = stoi(tempStr);
-
-
+    std::getline(input, tempStr); // stores 4
+    unsigned newCount = stoul(tempStr);
 
     // To do:
     // Use set methods to populate objects
 
+    Result newResult;
 
     for(unsigned i = 0; i < newCount; i++) // unsigned means an int that is positive
     {
-        // To do:
-        Result newResult;
-
-
         input >> newResult;
         r.AddResult(newResult);
-//        // track down which >> operator is called. Hint: look at what is being input.
-//        input >> result;
-//
-//        // To do: Create Set Result method
-//        registration.AddResult(result);
     }
 
     return input;

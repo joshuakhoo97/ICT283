@@ -1,25 +1,29 @@
 Student ID: 102234
 Semester:   9
 Unit Count: 4
-  Unit   : Data_Structures_And_Abstractions
+  Unit   : Data Structures And Abstractions
   Unit Id: ICT283
   Credits: 3
-  Mark    : 90
+  Mark   : 90
+  Date   : 30 June 2023
 
-  Unit   : Computer_Graphics
+  Unit   : Computer Graphics
   Unit Id: ICT289
   Credits: 1
-  Mark    : 90
+  Mark   : 90
+  Date   : 27 August 2023
 
-  Unit   : Introduction_to_Computer_Science
+  Unit   : Introduction to Computer Science
   Unit Id: ICT167
   Credits: 4
-  Mark    : 88
+  Mark   : 88
+  Date   : 26 December 2023
 
-  Unit   : Introduction_to_Cyber_Security
+  Unit   : Introduction to Cyber Security
   Unit Id: ICT287
   Credits: 3
-  Mark    : 90
+  Mark   : 90
+  Date   : 29 November 2023
 
 Number of courses = 4
 Total credits     = 11
