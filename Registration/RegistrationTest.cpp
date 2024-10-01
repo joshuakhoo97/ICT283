@@ -2,6 +2,7 @@
 #include "Registration.h"
 #include "Result.h"
 #include "Unit.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ int main() {
     Result result1;
     result1.SetUnit(unit1);
     result1.SetMark(85);
+
+
 
     Result result2;
     result2.SetUnit(unit2);
@@ -44,6 +47,27 @@ int main() {
         const Result& res = registration.GetResult(i);
         cout << res << endl;  // Assuming operator<< is overloaded for Result
     }
+
+    // Test 8: Print Results and verify date has been initialized with default values
+    cout << "-- Test 8 : Date with default values\n" <<  endl;
+    cout << result1 << endl;
+    cout << result2 << endl;
+    cout << result3 << endl;
+
+
+    // Test 9: Set Date for individual Result using Set
+    Date result1Date(20,12,2024);
+
+    result1.SetDate(result1Date);
+    result2.SetDate(result1Date);
+    result3.SetDate(result1Date);
+
+
+    // Test 10: Print Results and verify Date has been set
+    cout << "-- Test 10 : Date with 20,12,2024\n" <<  endl;
+    cout << result1 << endl;
+    cout << result2 << endl;
+    cout << result3 << endl;
 
     return 0;
 }

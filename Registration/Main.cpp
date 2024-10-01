@@ -16,7 +16,7 @@ int main()
     ifstream infile( "rinput.txt" ); //infile is an object on runtime stack
     if( !infile ) return -1;
 
-    // Debug Line --> Only use this commenting out everything from line 22 onwards to line before 'return 0;'
+//    // Debug Line --> Only use this commenting out everything from line 22 onwards to line before 'return 0;'
 //    PrintFileContent(infile);
 //    cout << " " << endl;
 
@@ -30,6 +30,9 @@ int main()
     ofile << r       // also a subroutine call. Can you guess what it means?
           << "Number of courses = " << r.GetCount() << '\n'
           << "Total credits     = " << r.GetCredits() << '\n';
+
+
+    cout << r << endl;
 
 
     return 0;

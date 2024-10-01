@@ -8,9 +8,9 @@
 #include <iostream>
 #include <string>
 
+using std::string;
 using std::ostream;
 using std::istream;
-using std::string;
 
 
 const unsigned MAX_RESULT = 10;
