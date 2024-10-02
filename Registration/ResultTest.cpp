@@ -2,8 +2,7 @@
 #include "Result.h"
 #include "Unit.h"
 
-using std::cout;
-using std::endl;
+using namespace std;
 
 int main ()
 {

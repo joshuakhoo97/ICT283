@@ -20,8 +20,6 @@ int main() {
     result1.SetUnit(unit1);
     result1.SetMark(85);
 
-
-
     Result result2;
     result2.SetUnit(unit2);
     result2.SetMark(90);

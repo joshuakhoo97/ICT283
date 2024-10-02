@@ -6,8 +6,15 @@ Result::Result()
     m_mark = 0;
 }
 
+Result::Result(const Unit &unit, float mark, const Date &date)
+{
+    m_unit = unit;
+    m_mark = mark;
+    m_date = date;
+}
+
 // Get Methods
-int     Result::GetMark() const
+float     Result::GetMark() const
 {
     return m_mark;
 }
@@ -26,7 +33,7 @@ void    Result::GetDate(Date &date ) const
 
 
 // Set Methods
-void    Result::SetMark(int mark)
+void    Result::SetMark(float mark)
 {
     m_mark = mark;
 }
@@ -69,7 +76,7 @@ std::istream & operator >> (istream & input, Result & result)
 
     string tempStr;
     std::getline(input, tempStr, ',');
-    result.SetMark(stoi(tempStr));
+    result.SetMark(stof(tempStr));
 
     Date newDate;
 
