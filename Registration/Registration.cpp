@@ -11,6 +11,16 @@ Registration::Registration()
     m_count     = 0;
 }
 
+Registration::Registration(long studentId, unsigned semester, unsigned count, const Result results[])
+    : m_studentId(studentId), m_semester(semester), m_count(count)
+{
+    // If count is within bounds, populate the results array
+    for(unsigned i = 0; i < count && i < MAX_RESULT; i++)
+    {
+        m_results[i] = results[i];
+    }
+}
+
 /*
 Get methods
 */

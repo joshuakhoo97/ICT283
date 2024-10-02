@@ -5,35 +5,45 @@
 #include <fstream>
 
 
-using namespace std;  // check textbook for detials of the namespace concept
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::ofstream;
 
 // Main Program Functions
-void PrintFileContent(ifstream &infile);
+
+
+void PrintFileContent(ifstream &infile); ///< used for debugging to ensure ifstream reads input file correctly
 
 int main()
 {
 
-    ifstream infile( "rinput.txt" ); //infile is an object on runtime stack
-    if( !infile ) return -1;
+    // In file
+    ifstream infile( "rinput.txt" );
+    // Check if File Opens
+    if( !infile )
+    {
+        cout << "Check File Name or if file is in the same folder as code: " endl;
+    }
 
-//    // Debug Line --> Only use this commenting out everything from line 22 onwards to line before 'return 0;'
-//    PrintFileContent(infile);
-//    cout << " " << endl;
-
+    // Create Registration Object
     Registration r;
-    infile >> r;    // operator function
-    // call the input stream operator from Registration
+    // Use overloaded operators to populate data
+    infile >> r;
 
+    // Out file
     ofstream ofile( "routput.txt" );
 
-    // Use a debugger and track down the calls made "behind the scene"
-    ofile << r       // also a subroutine call. Can you guess what it means?
+    // write to out file
+    // using overloaded operators to write contents of registration object
+    ofile << r
+          // As shown in Lab 4
           << "Number of courses = " << r.GetCount() << '\n'
           << "Total credits     = " << r.GetCredits() << '\n';
 
-
-    cout << r << endl;
-
+    // Print to check Contents of r --> Registration object
+    // Commented out but can remove '//' on line 46 or before cout to reveal
+    // cout << r << endl;
 
     return 0;
 }

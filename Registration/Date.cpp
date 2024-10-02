@@ -64,7 +64,7 @@ string Date::ConvertMonth(const unsigned month) const
         case 10: return "October";
         case 11: return "November";
         case 12: return "December";
-        default: return "Invalid Month";
+        default: return "Month Incorrect";
     }
 }
 

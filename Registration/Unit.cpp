@@ -7,8 +7,8 @@ Constructors
 
 Unit::Unit()
 {
-    m_name   = " ";
-    m_unitId = " ";
+    m_name   = "Default";
+    m_unitId = "Default";
     m_credits = 0;
 }
 

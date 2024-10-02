@@ -2,88 +2,121 @@
 #define UNIT_H
 
 #include <iostream>
+#include <string>
 
 using std::string;
 using std::ostream;
 using std::istream;
 
-
-/**
- * \class Unit
- * \brief Represents a course unit, storing unit name, ID, and credit information.
- */
+    /**
+     * \class Unit
+     * \brief Represents a course unit, storing the unit name, ID, and credit information.
+     *
+     * The Unit class encapsulates the information related to a course unit, including the
+     * course name, unit ID, and the number of credits associated with it.
+     *
+     * \author Joshua Khoo
+     * \date   30/09/2024
+     * \version 1.0 started
+     *
+     * \author Joshua Khoo
+     * \date   30/09/2024
+     * \version 2.0 updated
+     *
+     * \author Joshua Khoo
+     * \date   2/10/2024
+     * \version 3.0 final
+     */
 class Unit
 {
 public:
-
-    // Constructors
+    /**
+     * \brief Default constructor for the Unit class.
+     *
+     * Initializes the Unit object with default values.
+     */
     Unit();
 
-    /** \brief --> Parameterized Constructor to initialize attirbutes
+    /**
+     * \brief Parameterized constructor to initialize attributes.
      *
-     * \param name initializes m_name
-     * \param unitId initialized m_unitId
-     * \param credits initializes m_credits
+     * This constructor allows setting all the attributes of the Unit object:
+     * the course name, unit ID, and the number of credits.
      *
-     *
+     * \param name The name of the course unit.
+     * \param unitId The identifier of the course unit.
+     * \param credits The number of credits the course unit is worth.
      */
-    Unit( const string& name, const string& unitId, unsigned credits );  // nam is a pointer to char, revise ict159
+    Unit(const string& name, const string& unitId, unsigned credits);
 
-
-    // Get Methods
-
-    string      GetUnitName()   const;
-    string      GetUnitId()     const;
-
-    /** \brief Retrieves the Credits
+    /**
+     * \brief Retrieves the name of the course unit.
      *
-     * \return credits obtained
-     *
+     * \return A string containing the name of the unit.
      */
-    unsigned    GetCredits()    const;
+    string GetUnitName() const;
 
+    /**
+     * \brief Retrieves the unit ID.
+     *
+     * \return A string containing the ID of the unit.
+     */
+    string GetUnitId() const;
 
-    // Set Methods
+    /**
+     * \brief Retrieves the number of credits for the unit.
+     *
+     * \return The number of credits as an unsigned integer.
+     */
+    unsigned GetCredits() const;
+
+    /**
+     * \brief Sets the name of the course unit.
+     *
+     * \param newUnitName The new name of the unit.
+     */
     void SetUnitName(const string &newUnitName);
-    void SetUnitId  (const string &newUnitId); // parameter is read only
-    void SetCredits (unsigned credits);
 
+    /**
+     * \brief Sets the unit ID.
+     *
+     * \param newUnitId The new unit ID.
+     */
+    void SetUnitId(const string &newUnitId);
 
-private: // Naming convention 'm_' for attributes
+    /**
+     * \brief Sets the number of credits for the unit.
+     *
+     * \param credits The number of credits as an unsigned integer.
+     */
+    void SetCredits(unsigned credits);
 
-    string  m_name;    // course name, C style string. not a C++ string object
-    string  m_unitId;    // unitId, C style string. not a C++ string object
-    int     m_credits;                 // number of credits
+private:
+    string m_name;    ///< The name of the course unit.
+    string m_unitId;  ///< The unit ID.
+    unsigned m_credits; ///< The number of credits associated with the unit.
 };
 
-// Non-member functions
-ostream & operator <<( ostream & os, const Unit & unit );
-istream & operator >>( istream & input, Unit & unit );
+    /**
+     * \brief Overloaded insertion operator for printing Unit objects.
+     *
+     * Outputs the details of a Unit object to the output stream.
+     *
+     * \param os The output stream object.
+     * \param unit The Unit object to be printed.
+     * \return The modified output stream object.
+     */
+ostream& operator<<(ostream& os, const Unit& unit);
 
-#endif
+    /**
+     * \brief Overloaded extraction operator for reading Unit objects.
+     *
+     * Reads the details of a Unit object from the input stream.
+     *
+     * \param input The input stream object.
+     * \param unit The Unit object to be populated.
+     * \return The modified input stream object.
+     */
+istream& operator>>(istream& input, Unit& unit);
 
-//use doxyblocks on top panel use block comment in the header file;
-//
-//doxywizard
-//
-//-> select folder the current folder
-//--> project name everything
-//--> Mode --> select 2 and 3 radio button
-//    - second portion select 2nd radio button
-//
-//    Output
-//--> Html - 2 and 4
-//--> 2nd part 1st radio button and the 2nd part checked
-//
-//Diagrams
-//--> 3rd and everything onwards radio button
-//
-//
-//Expert tab
-//--> Dot - everything square box checked
-//
-//DOT_PATH ==> Locate Graphviz bin folder; C - programfiles x86 - graphviz - bin
-//
-//Go to run --> run doxygen
-//
-//- Show html output
+#endif // UNIT_H

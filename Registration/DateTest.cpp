@@ -2,9 +2,7 @@
 #include <iostream>
 
 
-using std::cout;
-using std::endl;
-using std::string;
+using namespace std;
 
 int main()
 {
