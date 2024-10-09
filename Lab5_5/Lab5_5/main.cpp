@@ -221,7 +221,7 @@ int returnIndex(const Vector<string>& columnHeaders, string& columnHeader)
         }
     }
 
-    return -1;
+    return 0;
 }
 
 

@@ -83,23 +83,49 @@ int main()
 
     // 1) Read Data
     // Using a relative file path to access data folder and correct file
-    string fileName = "data\\MetData_Mar01-2014-Mar01-2015-ALL.csv";
-    ifstream file = openFile(fileName);
+    string      fileName    = "data\\MetData_Mar01-2014-Mar01-2015-ALL.csv";
+//  ifstream    file        = openFile(fileName);
 
+    // Version before openFile(fileName)
+    ifstream file(fileName);  // Open the file directly using ifstream
 
-//    // Debug Line: Test the result of openFile(fileName);
-//    int testLines = 3;
-//    string line;
-//
-//    for (int i = 0; i < testLines; i++)
-//    {
-//        getline(file, line);
-//        cout << line << endl;
-//    }
+    // Check if the file was opened successfully
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file: " << fileName << std::endl;
+        return 1;  // Exit or handle error
+    }
+    else
+    {
+        cout << "File Successfully read" << endl;
+    }
+
+    // Debug Line: Test the result of openFile(fileName);
+    int testLines = 3;
+    string line;
+
+    for (int i = 0; i < testLines; i++)
+    {
+        getline(file, line);
+        cout << line << endl;
+    }
 
 //========================== END OF READ FILE ==========================
 
     // 2) Get Column index for processing
+
+    // Debug Line: Test the result of equalsIgnoreCase(str1, str2);
+//    string s1 = "hello";
+//    string s2 = "Hello";
+//
+//    if(equalsIgnoreCase(s1, s2))
+//    {
+//        cout << "Match" << endl;
+//    }
+//    else
+//    {
+//        cout << "Not match" << endl;
+//    }
 
     // Store line in file
     string line;
@@ -109,6 +135,14 @@ int main()
     // Vector to store each row's data
     Vector<string> rowData = splitLine(line, ',');
 
+    // Debug Line: Test split line's result
+//    cout << "Split line results: ";
+//    for(size_t i = 0; i < rowData.getSize(); i++)
+//    {
+//        cout <<  rowData.at(i) << ",";
+//    }
+
+
     // string to store headers associations
     string dateTime = "WAST";
     string windSpeed = "S";
@@ -117,7 +151,7 @@ int main()
     int indexDateTime = returnIndex(rowData, dateTime);
     int indexWindSpeed = returnIndex(rowData, windSpeed);
 
-    // Debug Line: Test the result of equalsIgnoreCase(str1, str2);
+
 
     // Debug Line: Test the result of returnIndex()
 //    cout << indexDateTime << " & " << indexWindSpeed << endl;
@@ -137,25 +171,49 @@ int main()
     Vector<string> timePartsVec;
     Vector<string> windSpeedVec;
 
-    // While loop to get the rest of the lines
-    // Processing 1 line at a time
     while(getline(file, line))
     {
-        processLine(line, indexDateTime, indexWindSpeed, rowData, datePartsVec, timePartsVec, windSpeedVec);
+        // rowData using the same vector as before for columnHeaders
+        rowData = splitLine(line, ',');
+
+        // Store line data of WAST column
+        // dd/mm/yyyy hh:mm
+        dateTimeUnsplit = rowData.at(indexDateTime);
+
+        // Split line by delimiter ' '
+        tempVec = splitLine(dateTimeUnsplit, ' ');
+
+        // Store dd/mm/yyyy
+        datePartsVec.push_back(tempVec.at(0));
+
+        // Store hh:mm
+        timePartsVec.push_back(tempVec.at(1));
+
+        // Store wind speed
+        windSpeedVec.push_back(rowData.at(indexWindSpeed));
     }
+
+    // While loop to get the rest of the lines
+    // Processing 1 line at a time
+//    while(getline(file, line))
+//    {
+//        processLine(line, indexDateTime, indexWindSpeed, rowData, datePartsVec, timePartsVec, windSpeedVec);
+//    }
 
 
     // Debug Line: Test if split line was successful to derive
     // 1) at position 0 date
     // 2) at position 1 time
     // Out side of while loop so as to print only one set for testing
-//    cout << temp.at(0) << endl;
-//    cout << temp.at(1) << endl;
+    cout << tempVec.at(0) << endl;
+    cout << tempVec.at(1) << endl;
 
-    // Debug Line: Print contents of Vector
-//    printContentsVec(datePartsVec);
-//    printContentsVec(timePartsVec);
-//    printContentsVec(windSpeedVec);
+    // Debug Line: Print 5 lines of each vector to verify data stored correctly
+    for(size_t i = 0; i < 5; i++)
+    {
+        cout <<  datePartsVec.at(i) << "," << timePartsVec.at(i) << "," << windSpeedVec.at(i) << endl;
+    }
+
 
 //========================== END OF GET ALL RELEVANT DATA ==========================
 
@@ -164,24 +222,68 @@ int main()
     // Create WindLogType vector
     WindLogType windLog;
 
+
+    // Testing version:
     // i can be pegged against any of the 3 data vectors as all of their sizes should match
     // however dates would be the most accurate
     for(size_t i = 0; i < datePartsVec.getSize(); i++)
     {
-        storeWRT(windLog, datePartsVec.at(i), timePartsVec.at(i), windSpeedVec.at(i));
+        Date date;
+        Time time;
+        WindRecType wrt;
+
+        // Modify Date and Time using helper functions
+        modifyDate(date, datePartsVec.at(i));
+        modifyTime(time, timePartsVec.at(i));
+
+        // Convert wind speed from string to float and modify WindRecType
+        modifyWRT(wrt, date, time, stof(windSpeedVec.at(i)));
+
+        // Push the WindRecType object into the vector
+        windLog.push_back(wrt);
     }
 
+    // Print first 3 WindRecType objects
     for(size_t i = 0; i < 3; i++)
     {
-        printWRT(windLog, i);
+        // Print Date in dd/mm/yyyy format
+        cout << windLog.at(i).d.GetDay() << "/"
+             << windLog.at(i).d.ConvertMonth(windLog.at(i).d.GetMonth()) << "/"
+             << windLog.at(i).d.GetYear() << " ";
+
+        // Print Time in hh:mm format
+        cout << windLog.at(i).t.GetHour() << ":"
+             << windLog.at(i).t.GetMins() << " ";
+
+        // Print Wind Speed in km/h
+        cout << windLog.at(i).getSpeedInKm() << " km/h" << endl;
     }
+
+
+//    // i can be pegged against any of the 3 data vectors as all of their sizes should match
+//    // however dates would be the most accurate
+//    for(size_t i = 0; i < datePartsVec.getSize(); i++)
+//    {
+//        storeWRT(windLog, datePartsVec.at(i), timePartsVec.at(i), windSpeedVec.at(i));
+//    }
+//
+//    for(size_t i = 0; i < 3; i++)
+//    {
+//        printWRT(windLog, i);
+//    }
 
 //========================== STORE WINDRECTYPE OBJECTS IN VECTOR ==========================
 
     // 5) Write to outfile "testoutput.csv"
 
-    string outfileName = "testoutput.csv";
+    string outfileName = "data\\testoutput.csv";
 
+//    writeToCSV(windLog, outfileName);
+//
+//    cout << "Program run, successful! Check data folder for: " << outfileName  << endl;
+
+
+    // Version before writeToCSV(windLog, outfileName)
     ofstream outFile(outfileName);
 
     if(!outFile.is_open())
@@ -206,7 +308,6 @@ int main()
         // Write wind speed
         outFile << windLog.at(i).getSpeedInKm() << std::endl;
     }
-
 
 
     outFile.close();
