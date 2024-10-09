@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1728378175 source:d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\time.cpp
+	"Time.h"
+
+1728377549 d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\time.h
+
+1728377542 source:d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\timetest.cpp
+	<iostream>
+	"Time.h"
+
+1728460434 source:d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\date.cpp
+	"Date.h"
+
+1728377280 d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\date.h
+	<iostream>
+	<string>
+
+1728469029 source:d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\main_test.cpp
+	"Date.h"
+	"Time.h"
+	"Vector.h"
+	<iostream>
+	<fstream>
+	<ostream>
+	<sstream>
+	<cctype>
+
+1728452845 d:\school\murdoch\ict 283 _ 2\topic05\practical\lab5_5\lab5_5\vector.h
+
